@@ -86,6 +86,7 @@ export const en = {
   markerWc: "W.C.",
   markerBasin: "Basin",
   markerAlmirah: "Almirah",
+  markerShower: "Shower",
 
   // Step 2 — Style & Budget
   step2Badge: "Step 2 of 6 • Style & Budget",
@@ -160,6 +161,18 @@ export const en = {
   floorDrainDesc: "Trap that drains water from the floor",
   niche: "Wall niche",
   nicheDesc: "Recessed shelf built into the wall",
+
+  // Step 4 — Generated 2D Plan
+  appSub4: "Step 4: Your 2D Plan",
+  step4Badge: "Step 4 of 6 • 2D Plan",
+  planTitle: "Your Generated Plan",
+  planSub: "Scaled 2D layout with real clearances",
+  regenerate: "Regenerate",
+  clearancesTitle: "Clearance Checks",
+  allClear: "All clearances look good.",
+  planLegend: "Wet zone, WC, basin & storage placed to scale",
+  s4CtaText: "Continue",
+  s4CtaSub: "Next: Materials & Estimate",
 } as const;
 
 /** Keys come from `en`; values are plain strings so translations conform while
@@ -239,6 +252,7 @@ export const hi: Dictionary = {
   markerWc: "डब्ल्यू.सी.",
   markerBasin: "बेसिन",
   markerAlmirah: "अलमारी",
+  markerShower: "शॉवर",
 
   step2Badge: "चरण 2 / 6 • स्टाइल और बजट",
   styleTitle: "आर्किटेक्चर स्टाइल",
@@ -309,6 +323,17 @@ export const hi: Dictionary = {
   floorDrainDesc: "फर्श का पानी निकालने वाला ट्रैप",
   niche: "वॉल निच",
   nicheDesc: "दीवार में बनी शेल्फ",
+
+  appSub4: "चरण 4: आपका 2D नक्शा",
+  step4Badge: "चरण 4 / 6 • 2D नक्शा",
+  planTitle: "आपका तैयार नक्शा",
+  planSub: "सटीक क्लीयरेंस के साथ 2D लेआउट",
+  regenerate: "फिर से बनाएं",
+  clearancesTitle: "क्लीयरेंस जांच",
+  allClear: "सभी क्लीयरेंस ठीक हैं।",
+  planLegend: "वेट ज़ोन, WC, बेसिन और स्टोरेज सटीक पैमाने पर",
+  s4CtaText: "आगे बढ़ें",
+  s4CtaSub: "अगला: सामग्री और अनुमान",
 };
 
 export const dictionaries: Record<Language, Dictionary> = { en, hi };
