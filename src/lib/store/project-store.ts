@@ -2,9 +2,11 @@
 
 import { create } from "zustand";
 import type {
+  AddOnType,
   ArchitectureStyle,
   CostTier,
   FixtureType,
+  FixtureVariant,
   Opening,
   Placement,
   Project,
@@ -35,6 +37,10 @@ interface ProjectState {
   setDoor: (opening: Opening) => void;
   setWindow: (opening: Opening | null) => void;
   setFixturePlacement: (type: FixtureType, placement: Placement) => void;
+
+  // Step 3 — fixture specs & add-ons
+  setFixtureVariant: (type: FixtureType, variant: FixtureVariant) => void;
+  toggleAddOn: (addOn: AddOnType) => void;
 
   // Step 2 — style & budget
   setArchitecture: (style: ArchitectureStyle) => void;
@@ -122,6 +128,22 @@ export const useProjectStore = create<ProjectState>((set, get) => {
       mutate((p) => ({
         ...p,
         fixtures: p.fixtures.map((f) => (f.type === type ? { ...f, placement } : f)),
+      }));
+    },
+
+    setFixtureVariant(type, variant) {
+      mutate((p) => ({
+        ...p,
+        fixtures: p.fixtures.map((f) => (f.type === type ? { ...f, variant } : f)),
+      }));
+    },
+
+    toggleAddOn(addOn) {
+      mutate((p) => ({
+        ...p,
+        addOns: p.addOns.includes(addOn)
+          ? p.addOns.filter((a) => a !== addOn)
+          : [...p.addOns, addOn],
       }));
     },
 

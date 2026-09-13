@@ -1,5 +1,5 @@
 import type { Project } from "@/lib/types";
-import { defaultRoom, defaultStyle, defaultFixtures } from "@/lib/defaults";
+import { defaultRoom, defaultStyle, defaultFixtures, defaultAddOns } from "@/lib/defaults";
 import type { NewProjectInput, ProjectStore } from "./index";
 
 const STORAGE_KEY = "bathcraft.projects";
@@ -54,6 +54,7 @@ export class LocalProjectStore implements ProjectStore {
       room: { ...defaultRoom(), name: input.name },
       style: defaultStyle(),
       fixtures: defaultFixtures(),
+      addOns: defaultAddOns(),
       plan: null,
       estimate: null,
       createdAt: nowIso(),

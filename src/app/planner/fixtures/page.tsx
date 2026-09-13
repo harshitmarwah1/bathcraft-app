@@ -4,39 +4,41 @@ import { useRouter } from "next/navigation";
 import { WizardShell } from "@/components/shell/WizardShell";
 import { ProgressBar } from "@/components/shell/ProgressBar";
 import { StepFooterCta } from "@/components/planner/StepFooterCta";
-import { MaterialIcon } from "@/components/ui/MaterialIcon";
+import { FixtureSpecsSection } from "@/components/planner/FixtureSpecsSection";
+import { AddOnsSection } from "@/components/planner/AddOnsSection";
 import { useI18n } from "@/lib/i18n/provider";
+import { useEnsureProject } from "@/lib/store/use-ensure-project";
 
 export default function FixturesStepPage() {
   const { t } = useI18n();
   const router = useRouter();
+  const { ready } = useEnsureProject();
 
   return (
     <WizardShell
-      subtitle="Step 3: Fixtures & Placement"
+      subtitle={t.appSub3}
       footer={
         <StepFooterCta
-          label={t.s2CtaText}
-          subLabel="Coming soon"
-          onClick={() => {}}
+          label={t.s3CtaText}
+          subLabel={t.s3CtaSub}
+          onClick={() => router.push("/planner/plan")}
           onBack={() => router.push("/planner/style")}
           backLabel={t.backCta}
-          disabled
+          disabled={!ready}
         />
       }
     >
-      <ProgressBar badge="Step 3 of 6 • Fixtures" step={3} total={6} icon="grid_view" />
-      <div style={{ padding: "48px 24px", display: "flex", flexDirection: "column", alignItems: "center", gap: 14, textAlign: "center" }}>
-        <div style={{ width: 64, height: 64, borderRadius: 18, background: "var(--color-primary-tint)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <MaterialIcon name="construction" size={32} color="var(--color-primary-accent)" />
+      <ProgressBar badge={t.step3Badge} step={3} total={6} icon="grid_view" />
+      {ready ? (
+        <div style={{ padding: "0 16px", display: "flex", flexDirection: "column", gap: 16 }}>
+          <FixtureSpecsSection />
+          <AddOnsSection />
         </div>
-        <h1 style={{ margin: 0, fontSize: 18, fontWeight: 800, color: "var(--color-on-surface)" }}>
-          Step 3 — coming next
-        </h1>
-        <p style={{ margin: 0, fontSize: 13, color: "var(--color-on-surface-variant)", maxWidth: 280 }}>
-          Fixtures &amp; Placement (deeper element choices) is the next milestone (M2).
-        </p>
-      </div>
+      ) : (
+        <div style={{ padding: "40px 16px", textAlign: "center", color: "var(--color-on-surface-variant)", fontSize: 13 }}>
+          Loading…
+        </div>
+      )}
     </WizardShell>
   );
 }
