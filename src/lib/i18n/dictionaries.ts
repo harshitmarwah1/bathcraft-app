@@ -173,6 +173,24 @@ export const en = {
   planLegend: "Wet zone, WC, basin & storage placed to scale",
   s4CtaText: "Continue",
   s4CtaSub: "Next: Materials & Estimate",
+
+  // Step 5 — Materials & Estimate
+  appSub5: "Step 5: Materials & Estimate",
+  step5Badge: "Step 5 of 6 • Materials",
+  bomTitle: "Bill of Materials",
+  bomSub: "Quantities estimated from your plan",
+  costTitle: "Cost & Time Estimate",
+  materialCost: "Materials",
+  labourCost: "Labour",
+  totalCost: "Estimated Total",
+  timeEstimate: "Time to complete",
+  daysUnit: "days",
+  budgetLabel: "Your budget",
+  withinBudget: "Within budget",
+  overBudget: "Over budget",
+  estDisclaimer: "Estimate only — actual rates vary by shop and brand.",
+  s5CtaText: "Continue",
+  s5CtaSub: "Next: Project Brief & Guide",
 } as const;
 
 /** Keys come from `en`; values are plain strings so translations conform while
@@ -334,6 +352,23 @@ export const hi: Dictionary = {
   planLegend: "वेट ज़ोन, WC, बेसिन और स्टोरेज सटीक पैमाने पर",
   s4CtaText: "आगे बढ़ें",
   s4CtaSub: "अगला: सामग्री और अनुमान",
+
+  appSub5: "चरण 5: सामग्री और अनुमान",
+  step5Badge: "चरण 5 / 6 • सामग्री",
+  bomTitle: "सामग्री सूची (BOM)",
+  bomSub: "आपके नक्शे से अनुमानित मात्रा",
+  costTitle: "लागत और समय अनुमान",
+  materialCost: "सामग्री",
+  labourCost: "मज़दूरी",
+  totalCost: "अनुमानित कुल",
+  timeEstimate: "पूरा होने का समय",
+  daysUnit: "दिन",
+  budgetLabel: "आपका बजट",
+  withinBudget: "बजट के भीतर",
+  overBudget: "बजट से अधिक",
+  estDisclaimer: "यह केवल अनुमान है — दरें दुकान व ब्रांड अनुसार बदलती हैं।",
+  s5CtaText: "आगे बढ़ें",
+  s5CtaSub: "अगला: प्रोजेक्ट ब्रीफ और गाइड",
 };
 
 export const dictionaries: Record<Language, Dictionary> = { en, hi };
