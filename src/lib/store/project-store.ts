@@ -16,6 +16,7 @@ import type {
 import { DIM_BOUNDS } from "@/lib/defaults";
 import { getProjectStore } from "@/lib/db";
 import { generateLayout } from "@/lib/layout/engine";
+import { generateEstimate as computeEstimate } from "@/lib/estimate/engine";
 
 type DimKey = keyof typeof DIM_BOUNDS;
 
@@ -50,6 +51,9 @@ interface ProjectState {
 
   // Step 4 — generate the 2D plan from current inputs
   generatePlan: () => void;
+
+  // Step 5 — generate the material + cost estimate
+  generateEstimate: () => void;
 }
 
 function clampDim(dim: DimKey, value: number): number {
@@ -168,6 +172,13 @@ export const useProjectStore = create<ProjectState>((set, get) => {
         ...p,
         plan: generateLayout(p.room, p.fixtures),
         status: p.status === "draft" ? "planned" : p.status,
+      }));
+    },
+
+    generateEstimate() {
+      mutate((p) => ({
+        ...p,
+        estimate: computeEstimate(p.room, p.style, p.fixtures, p.addOns),
       }));
     },
   };
