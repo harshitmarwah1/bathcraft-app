@@ -27,6 +27,34 @@ export type RoomPreset = "master" | "guest" | "kids" | "powder";
 
 export type FixtureType = "wc" | "vanity" | "shower" | "almirah";
 
+/** Type/variant of a fixture (Step 3 — deeper spec that feeds the BOM). */
+export type FixtureVariant =
+  // wc
+  | "wallHung"
+  | "floorMounted"
+  | "smart"
+  // vanity / basin
+  | "countertop"
+  | "wallHungBasin"
+  | "pedestal"
+  // shower
+  | "rainShower"
+  | "handheld"
+  | "showerPanel"
+  // almirah
+  | "mirrorCabinet"
+  | "openShelf"
+  | "tallUnit";
+
+/** Optional add-on elements the homeowner can include (Step 3). */
+export type AddOnType =
+  | "geyser"
+  | "exhaustFan"
+  | "towelRail"
+  | "healthFaucet"
+  | "floorDrain"
+  | "niche";
+
 export type ArchitectureStyle = "modern" | "traditional" | "minimal" | "luxury";
 
 /** Cost tiers offered to the homeowner (Step 2). */
@@ -50,10 +78,11 @@ export interface Room {
   window: Opening | null;
 }
 
-/** A fixture the homeowner wants, plus their placement preference. */
+/** A fixture the homeowner wants, its placement, and (Step 3) its type/variant. */
 export interface FixtureChoice {
   type: FixtureType;
   placement: Placement;
+  variant?: FixtureVariant;
 }
 
 export interface StyleChoice {
@@ -122,6 +151,7 @@ export interface Project {
   room: Room;
   style: StyleChoice;
   fixtures: FixtureChoice[];
+  addOns: AddOnType[];
   plan: GeneratedPlan | null;
   estimate: Estimate | null;
   createdAt: string;

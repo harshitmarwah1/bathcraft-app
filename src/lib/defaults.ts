@@ -1,4 +1,4 @@
-import type { Room, StyleChoice, FixtureChoice } from "@/lib/types";
+import type { Room, StyleChoice, FixtureChoice, AddOnType } from "@/lib/types";
 
 /** Default room — mirrors the Stitch export's initial state (102" x 72" x 108"). */
 export function defaultRoom(): Room {
@@ -23,11 +23,16 @@ export function defaultStyle(): StyleChoice {
 
 export function defaultFixtures(): FixtureChoice[] {
   return [
-    { type: "wc", placement: "back" },
-    { type: "vanity", placement: "right" },
-    { type: "shower", placement: "walkIn" },
-    { type: "almirah", placement: "underVanity" },
+    { type: "wc", placement: "back", variant: "floorMounted" },
+    { type: "vanity", placement: "right", variant: "countertop" },
+    { type: "shower", placement: "walkIn", variant: "handheld" },
+    { type: "almirah", placement: "underVanity", variant: "mirrorCabinet" },
   ];
+}
+
+/** Common essentials pre-selected for an Indian bathroom. */
+export function defaultAddOns(): AddOnType[] {
+  return ["geyser", "exhaustFan"];
 }
 
 /** Dimension bounds (inches) — from the export's adjustDim clamps. */
