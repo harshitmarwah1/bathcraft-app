@@ -191,6 +191,34 @@ export const en = {
   estDisclaimer: "Estimate only — actual rates vary by shop and brand.",
   s5CtaText: "Continue",
   s5CtaSub: "Next: Project Brief & Guide",
+
+  // Step 6 — Project Brief & Brand Guide
+  appSub6: "Step 6: Project Brief",
+  step6Badge: "Step 6 of 6 • Brief",
+  briefTitle: "Your Project Brief",
+  briefSub: "Everything in one place — share it with your contractor",
+  briefSpaceLabel: "Space",
+  briefStyleLabel: "Style & Budget",
+  briefFixturesLabel: "Fixtures & Elements",
+  briefPlanLabel: "2D Plan",
+  briefEstimateLabel: "Cost & Time",
+  brandGuideTitle: "Brand Guide",
+  brandGuideSub: "Trusted brands, grouped by tier",
+  recommendedForYou: "Recommended for you",
+  bandPremium: "Premium",
+  bandMid: "Popular",
+  bandBudget: "Budget",
+  printBrief: "Print / Save PDF",
+  shareBrief: "Share",
+  saveToProfile: "Save to profile",
+  savedToast: "Saved to your profile",
+  finishSub: "Your plan is saved — share the brief anytime",
+
+  // Bathrooms (saved projects)
+  myProjectsTitle: "My Bathrooms",
+  myProjectsEmpty: "No saved projects yet. Start the planner to create one.",
+  startPlanner: "Start planning",
+  openProject: "Open",
 } as const;
 
 /** Keys come from `en`; values are plain strings so translations conform while
@@ -369,6 +397,32 @@ export const hi: Dictionary = {
   estDisclaimer: "यह केवल अनुमान है — दरें दुकान व ब्रांड अनुसार बदलती हैं।",
   s5CtaText: "आगे बढ़ें",
   s5CtaSub: "अगला: प्रोजेक्ट ब्रीफ और गाइड",
+
+  appSub6: "चरण 6: प्रोजेक्ट ब्रीफ",
+  step6Badge: "चरण 6 / 6 • ब्रीफ",
+  briefTitle: "आपका प्रोजेक्ट ब्रीफ",
+  briefSub: "सब कुछ एक जगह — अपने ठेकेदार के साथ साझा करें",
+  briefSpaceLabel: "जगह",
+  briefStyleLabel: "स्टाइल और बजट",
+  briefFixturesLabel: "फिक्स्चर और तत्व",
+  briefPlanLabel: "2D नक्शा",
+  briefEstimateLabel: "लागत और समय",
+  brandGuideTitle: "ब्रांड गाइड",
+  brandGuideSub: "भरोसेमंद ब्रांड, टियर अनुसार",
+  recommendedForYou: "आपके लिए सुझाव",
+  bandPremium: "प्रीमियम",
+  bandMid: "लोकप्रिय",
+  bandBudget: "बजट",
+  printBrief: "प्रिंट / PDF सेव करें",
+  shareBrief: "साझा करें",
+  saveToProfile: "प्रोफ़ाइल में सेव करें",
+  savedToast: "आपकी प्रोफ़ाइल में सेव हो गया",
+  finishSub: "आपका प्लान सेव है — ब्रीफ कभी भी साझा करें",
+
+  myProjectsTitle: "मेरे बाथरूम",
+  myProjectsEmpty: "अभी कोई प्रोजेक्ट नहीं। प्लानर शुरू करें।",
+  startPlanner: "प्लानिंग शुरू करें",
+  openProject: "खोलें",
 };
 
 export const dictionaries: Record<Language, Dictionary> = { en, hi };

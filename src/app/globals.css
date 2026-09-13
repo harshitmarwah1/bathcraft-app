@@ -196,3 +196,28 @@ body {
     border: 1px solid var(--color-card-border);
   }
 }
+
+/* Print: show the brief content only, expand the frame, hide chrome. */
+@media print {
+  header,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+  .app-frame {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    max-width: 680px !important;
+    margin: 0 auto !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+  .app-frame .nsb {
+    overflow: visible !important;
+  }
+  body {
+    background: #fff !important;
+  }
+}
