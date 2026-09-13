@@ -23,6 +23,7 @@ export function StepFooterCta({
 }) {
   return (
     <div
+      className="no-print"
       style={{
         flexShrink: 0,
         padding: "10px 16px",

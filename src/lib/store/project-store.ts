@@ -54,6 +54,9 @@ interface ProjectState {
 
   // Step 5 — generate the material + cost estimate
   generateEstimate: () => void;
+
+  // Step 6 — mark the project saved/finalised
+  finalize: () => void;
 }
 
 function clampDim(dim: DimKey, value: number): number {
@@ -180,6 +183,10 @@ export const useProjectStore = create<ProjectState>((set, get) => {
         ...p,
         estimate: computeEstimate(p.room, p.style, p.fixtures, p.addOns),
       }));
+    },
+
+    finalize() {
+      mutate((p) => ({ ...p, status: "shared" }));
     },
   };
 });
