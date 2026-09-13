@@ -1,9 +1,60 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useSyncExternalStore } from "react";
 import type { Theme } from "@/lib/types";
 
 const STORAGE_KEY = "bathcraft.theme";
+
+/* ── Module-level store, read via useSyncExternalStore ──
+ * The inline `themeInitScript` (in layout.tsx) paints the correct theme onto
+ * <html data-theme> before hydration, so there is no flash. This store keeps
+ * React state in sync with that choice and localStorage. */
+
+let current: Theme | null = null;
+const listeners = new Set<() => void>();
+
+function applyTheme(theme: Theme) {
+  if (typeof document !== "undefined") {
+    document.documentElement.setAttribute("data-theme", theme);
+  }
+}
+
+function readInitial(): Theme {
+  if (typeof window === "undefined") return "light";
+  try {
+    const saved = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
+    if (saved === "light" || saved === "dark") return saved;
+    if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) return "dark";
+  } catch {
+    /* ignore */
+  }
+  return "light";
+}
+
+function getSnapshot(): Theme {
+  if (current === null) current = readInitial();
+  return current;
+}
+
+function getServerSnapshot(): Theme {
+  return "light";
+}
+
+function subscribe(cb: () => void): () => void {
+  listeners.add(cb);
+  return () => listeners.delete(cb);
+}
+
+function setThemeValue(theme: Theme) {
+  current = theme;
+  applyTheme(theme);
+  try {
+    window.localStorage.setItem(STORAGE_KEY, theme);
+  } catch {
+    /* ignore */
+  }
+  listeners.forEach((cb) => cb());
+}
 
 interface ThemeContextValue {
   theme: Theme;
@@ -13,49 +64,14 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
-function applyTheme(theme: Theme) {
-  if (typeof document === "undefined") return;
-  document.documentElement.setAttribute("data-theme", theme);
-}
-
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("light");
-
-  // Read the persisted / system preference on mount (the inline script in
-  // layout.tsx has already painted the correct theme to avoid a flash).
-  useEffect(() => {
-    let initial: Theme = "light";
-    try {
-      const saved = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
-      if (saved === "light" || saved === "dark") initial = saved;
-      else if (window.matchMedia?.("(prefers-color-scheme: dark)").matches)
-        initial = "dark";
-    } catch {
-      /* ignore */
-    }
-    setThemeState(initial);
-    applyTheme(initial);
-  }, []);
-
-  const setTheme = useCallback((t: Theme) => {
-    setThemeState(t);
-    applyTheme(t);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, t);
-    } catch {
-      /* ignore */
-    }
-  }, []);
-
-  const toggleTheme = useCallback(() => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  }, [theme, setTheme]);
-
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const value: ThemeContextValue = {
+    theme,
+    setTheme: setThemeValue,
+    toggleTheme: () => setThemeValue(theme === "dark" ? "light" : "dark"),
+  };
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme(): ThemeContextValue {

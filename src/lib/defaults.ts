@@ -25,7 +25,7 @@ export function defaultFixtures(): FixtureChoice[] {
   return [
     { type: "wc", placement: "back" },
     { type: "vanity", placement: "right" },
-    { type: "shower", placement: "left" },
+    { type: "shower", placement: "walkIn" },
     { type: "almirah", placement: "underVanity" },
   ];
 }
