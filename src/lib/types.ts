@@ -11,8 +11,17 @@ export type Unit = "imperial" | "metric";
 /** The four walls of a rectangular room, from the plan's point of view. */
 export type Wall = "back" | "front" | "left" | "right";
 
-/** Placement targets a fixture can snap to. */
-export type Placement = Wall | "nearEntry" | "underVanity" | "dryCorner" | "wallRecess";
+/** Placement / variant a fixture can take. Walls plus special spots and the
+ *  shower variants shown in the wizard. */
+export type Placement =
+  | Wall
+  | "nearEntry"
+  | "underVanity"
+  | "dryCorner"
+  | "wallRecess"
+  | "walkIn"
+  | "enclosed"
+  | "tubCombo";
 
 export type RoomPreset = "master" | "guest" | "kids" | "powder";
 

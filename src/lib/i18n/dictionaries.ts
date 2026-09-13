@@ -9,6 +9,7 @@ export const en = {
   // app chrome
   appName: "BathCraft",
   appSub: "Step 1: Space & Layout",
+  appSub2: "Step 2: Style & Budget",
   langLabel: "EN",
   langSecondary: "हिन्दी",
 
@@ -67,12 +68,24 @@ export const en = {
   // placements
   back: "Back Wall",
   front: "Near Entry",
+  frontWall: "Front Wall",
   left: "Left Wall",
   right: "Right Wall",
   nearEntry: "Near Entry",
   underVanity: "Under Vanity",
   dryCorner: "Dry Corner",
   wallRecess: "Wall Recess",
+  walkIn: "Walk-in",
+  enclosed: "Enclosed",
+  tubCombo: "Tub Combo",
+
+  // fixtures section chrome + preview markers
+  itemsSuffix: "Items",
+  liveScale: "1 : 50 Live Scale",
+  markerWet: "Wet",
+  markerWc: "W.C.",
+  markerBasin: "Basin",
+  markerAlmirah: "Almirah",
 
   // Step 2 — Style & Budget
   step2Badge: "Step 2 of 6 • Style & Budget",
@@ -91,6 +104,11 @@ export const en = {
   tierGoodQuality: "Good Quality",
   tierTopOfLine: "Top of the Line",
   continueCta: "Continue to Fixtures",
+  s1CtaText: "Continue",
+  s1CtaSub: "Next: Style & Budget",
+  s2CtaText: "Continue",
+  s2CtaSub: "Next: Fixtures & Placement",
+  backCta: "Back",
 } as const;
 
 /** Keys come from `en`; values are plain strings so translations conform while
@@ -100,6 +118,7 @@ export type Dictionary = { [K in keyof typeof en]: string };
 export const hi: Dictionary = {
   appName: "BathCraft",
   appSub: "चरण 1: जगह और लेआउट",
+  appSub2: "चरण 2: स्टाइल और बजट",
   langLabel: "हिन्दी",
   langSecondary: "EN",
 
@@ -152,12 +171,23 @@ export const hi: Dictionary = {
 
   back: "पीछे की दीवार",
   front: "प्रवेश के पास",
+  frontWall: "सामने की दीवार",
   left: "बायीं दीवार",
   right: "दायीं दीवार",
   nearEntry: "प्रवेश के पास",
   underVanity: "वैनिटी के नीचे",
   dryCorner: "सूखा कोना",
   wallRecess: "वॉल रीसेस",
+  walkIn: "वॉक-इन",
+  enclosed: "बंद केबिन",
+  tubCombo: "टब कॉम्बो",
+
+  itemsSuffix: "आइटम",
+  liveScale: "1 : 50 लाइव स्केल",
+  markerWet: "वेट",
+  markerWc: "डब्ल्यू.सी.",
+  markerBasin: "बेसिन",
+  markerAlmirah: "अलमारी",
 
   step2Badge: "चरण 2 / 6 • स्टाइल और बजट",
   styleTitle: "आर्किटेक्चर स्टाइल",
@@ -175,6 +205,11 @@ export const hi: Dictionary = {
   tierGoodQuality: "गुड क्वालिटी",
   tierTopOfLine: "टॉप ऑफ द लाइन",
   continueCta: "फिक्स्चर पर जाएं",
+  s1CtaText: "आगे बढ़ें",
+  s1CtaSub: "अगला: स्टाइल और बजट",
+  s2CtaText: "आगे बढ़ें",
+  s2CtaSub: "अगला: फिक्स्चर और स्थान",
+  backCta: "वापस",
 };
 
 export const dictionaries: Record<Language, Dictionary> = { en, hi };

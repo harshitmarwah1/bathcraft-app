@@ -37,10 +37,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Set the theme before hydration to avoid a flash. */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        {/* Material Symbols Outlined — icon font used throughout the app. */}
+        {/* Material Symbols Outlined — icon font used throughout the app.
+            Loaded via <link> in the App Router root <head> (the no-page-custom-font
+            rule targets the Pages Router _document and is a false positive here).
+            display=block is correct for an icon font (avoids fallback ligature text
+            like "architecture" flashing before the glyphs load; matches Material's
+            own guidance), so the google-font-display hint is suppressed too. */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font, @next/next/google-font-display */}
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
         />
       </head>
       <body>

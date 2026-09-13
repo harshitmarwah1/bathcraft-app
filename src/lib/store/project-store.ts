@@ -9,6 +9,7 @@ import type {
   Placement,
   Project,
   RoomPreset,
+  Unit,
 } from "@/lib/types";
 import { DIM_BOUNDS } from "@/lib/defaults";
 import { getProjectStore } from "@/lib/db";
@@ -18,6 +19,9 @@ type DimKey = keyof typeof DIM_BOUNDS;
 interface ProjectState {
   project: Project | null;
   loading: boolean;
+  /** Display unit preference (session-level; not part of the saved project). */
+  unit: Unit;
+  setUnit: (unit: Unit) => void;
 
   /** Load the user's most recent project, or create a fresh default one. */
   loadOrCreate: (userId: string) => Promise<void>;
@@ -61,6 +65,11 @@ export const useProjectStore = create<ProjectState>((set, get) => {
   return {
     project: null,
     loading: false,
+    unit: "imperial",
+
+    setUnit(unit) {
+      set({ unit });
+    },
 
     async loadOrCreate(userId: string) {
       set({ loading: true });
